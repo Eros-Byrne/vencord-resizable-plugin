@@ -1,0 +1,46 @@
+.vc-rsp-resized {
+    aspect-ratio: 16 / 9;
+}
+
+/* Let the video fill the bigger box */
+.vc-rsp-resized video,
+.vc-rsp-resized [class*="videoWrapper"] {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+.vc-rsp-handle {
+    position: absolute;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.15s;
+    background: rgb(255 255 255 / 60%);
+    touch-action: none;
+}
+
+.vc-rsp-handle-left {
+    left: 0;
+    cursor: nesw-resize;
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+.vc-rsp-handle-right {
+    right: 0;
+    cursor: nwse-resize;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+*:hover > .vc-rsp-handle,
+.vc-rsp-dragging .vc-rsp-handle {
+    opacity: 1;
+}
+
+/* Avoid selecting text while dragging */
+.vc-rsp-dragging {
+    user-select: none;
+}
