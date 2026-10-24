@@ -120,6 +120,10 @@ Known limits:
 - Discord places the preview using its own idea of how big it is, so a very large preview may hang off the edge of the window. Drag the preview to move it back.
 - Only the floating preview inside Discord is changed. Discord's pop-out stream window is a separate window and is already freely resizable.
 
+## Making a release
+
+Releases attach a `resizableStreamPreview.zip` automatically. On GitHub, go to **Releases → Draft a new release**, type a new tag (for example `v1.0.1`), add notes and click **Publish release**. A GitHub Action zips the plugin folder and adds it to the release within a minute.
+
 ## Licence
 
 GPL-3.0-or-later, same as Vencord.

@@ -1,0 +1,21 @@
+# When you publish a release on GitHub, zip the plugin folder and attach it.
+name: Attach plugin zip to release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  attach-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Zip plugin folder
+        run: zip -r resizableStreamPreview.zip resizableStreamPreview
+      - name: Upload zip to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" resizableStreamPreview.zip --clobber
