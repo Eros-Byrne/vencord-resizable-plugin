@@ -17,7 +17,7 @@ When you're in a voice call watching a stream and click over to another channel 
 Vencord userplugins aren't in the Vencord installer, so you build Vencord yourself from source. You need:
 
 - [Git](https://git-scm.com/downloads)
-- [Node.js](https://nodejs.org/) LTS (v18 or newer)
+- [Node.js](https://nodejs.org/) v22 or newer (Vencord needs it)
 - [pnpm](https://pnpm.io/installation): after installing Node, run `npm install -g pnpm`
 - The Discord desktop app
 
@@ -41,14 +41,14 @@ Useful links:
 
 2. **Add this plugin** to Vencord's `src/userplugins` folder (create the folder if it doesn't exist). The folder must end up as `Vencord/src/userplugins/resizableStreamPreview/index.tsx`.
 
+   Clone this repo **somewhere outside the Vencord folder** (for example next to it), then copy just the `resizableStreamPreview` folder across:
+
    ```sh
-   cd src
-   mkdir userplugins
-   cd userplugins
+   cd ..
    git clone https://github.com/Eros-Byrne/vencord-resizable-plugin
    ```
 
-   Then move or copy the `resizableStreamPreview` folder from inside `vencord-resizable-plugin` up into `src/userplugins/`.
+   Copy `vencord-resizable-plugin/resizableStreamPreview` into `Vencord/src/userplugins/`. Don't clone the whole repo into `userplugins`, because Vencord will try to load the repo folder as a plugin and the build will fail.
 
    **Or download it instead of using git:** grab `resizableStreamPreview.zip` from the [latest release](https://github.com/Eros-Byrne/vencord-resizable-plugin/releases/latest), unzip it, and put the `resizableStreamPreview` folder into `src/userplugins/`. You still need to build Vencord from source (steps 1, 3 and 4), because Vencord's normal installer can't load extra plugins.
 
@@ -79,8 +79,8 @@ Settings (Vencord → Plugins → ResizableStreamPreview → cog icon):
 
 | Setting | What it does |
 | --- | --- |
-| Max width % | Largest width the preview can reach, as a % of the Discord window width. |
-| Preview selector | Advanced. The CSS selector used to find Discord's preview window. Only change it if a Discord update breaks the plugin (see below). |
+| Max Width Percent | Largest width the preview can reach, as a % of the Discord window width. |
+| Pip Selector | Advanced. The CSS selector used to find Discord's preview window. Only change it if a Discord update breaks the plugin (see below). |
 
 ## Developing in VS Code
 
@@ -113,7 +113,7 @@ The plugin finds Discord's preview window by looking for an element whose class 
 
 1. Open DevTools (`Ctrl+Shift+I`), click the element picker (top-left arrow) and click on the floating preview.
 2. Find the outer element of the preview and look at its `class`. You'll see something like `pictureInPictureWindow_1a2b3c`.
-3. Put the new name part in the **Preview selector** setting, for example `[class*="newClassName"]`, then restart Discord.
+3. Put the new name part in the **Pip Selector** setting, for example `[class*="newClassName"]`, then restart Discord.
 
 Known limits:
 
@@ -122,7 +122,7 @@ Known limits:
 
 ## Making a release
 
-Releases attach a `resizableStreamPreview.zip` automatically. On GitHub, go to **Releases → Draft a new release**, type a new tag (for example `v1.0.1`), add notes and click **Publish release**. A GitHub Action zips the plugin folder and adds it to the release within a minute.
+Releases attach a `resizableStreamPreview.zip` automatically. On GitHub, go to **Releases → Draft a new release**, type a new tag (for example `v1.0.1`), add notes and click **Publish release**. A GitHub Action (in `.github/workflows/release.yml`) zips the plugin folder and adds it to the release. Check the **Actions** tab if the zip doesn't appear after a couple of minutes, or upload the zip by hand.
 
 ## Licence
 
