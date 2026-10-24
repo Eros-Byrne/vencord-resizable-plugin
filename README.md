@@ -48,7 +48,9 @@ Useful links:
    git clone https://github.com/Eros-Byrne/vencord-resizable-plugin
    ```
 
-   Then move or copy the `resizableStreamPreview` folder from inside `vencord-resizable-plugin` up into `src/userplugins/`. (Or just download this repo as a ZIP and copy the `resizableStreamPreview` folder in.)
+   Then move or copy the `resizableStreamPreview` folder from inside `vencord-resizable-plugin` up into `src/userplugins/`.
+
+   **Or download it instead of using git:** grab `resizableStreamPreview.zip` from the [latest release](https://github.com/Eros-Byrne/vencord-resizable-plugin/releases/latest), unzip it, and put the `resizableStreamPreview` folder into `src/userplugins/`. You still need to build Vencord from source (steps 1, 3 and 4), because Vencord's normal installer can't load extra plugins.
 
 3. **Build Vencord** (from the `Vencord` root folder):
 
